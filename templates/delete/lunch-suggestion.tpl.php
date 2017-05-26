@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'templates/header.tpl.php');?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/header.tpl.php');?>
 
 <div class="unit">
 <h1>Delete Entry</h1>

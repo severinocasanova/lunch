@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'templates/header.tpl.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/header.tpl.php'); ?>
 
 <div class="unit">
 <h1>Add Location</h1>
@@ -27,4 +27,4 @@
 
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'templates/footer.tpl.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/footer.tpl.php'); ?>

@@ -1,7 +1,7 @@
 <?php
 $T['webroot'] = 'lunch/';
-require_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'require/setup.php');
-include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'classes/lunch_suggestions.class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/require/setup.php');
+include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/classes/lunch_suggestions.class.php');
 
 #if($T['user']['user_permission'] < 3){
 #  $T['title'] = 'Delete Entry';
@@ -32,5 +32,5 @@ if($T['lunch_suggestion']['lunch_suggestion_ip_address'] != $_SERVER['REMOTE_ADD
 # template variables
 $T['title'] = 'Add Entry';
 $T['messages'] = $lunch_suggestions_obj->messages;
-include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'templates/delete/lunch-suggestion.tpl.php');
+include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/delete/lunch-suggestion.tpl.php');
 ?>
