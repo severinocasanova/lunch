@@ -1,0 +1,30 @@
+Options +ExecCGI
+Options -Indexes
+Options -MultiViews
+Options +FollowSymLinks
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+RewriteEngine On
+#RewriteBase /
+# this will not look for index.php
+DirectorySlash Off
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.php -f
+#RewriteRule ^(.+)$ $1.php [L]
+RewriteRule ^add/reminder/(.*?)/(\d+) /add/reminder.php?for=$1&id=$2
+RewriteRule ^add/roommate/bill/RG(\d+) /add/roommate/bill.php?id=$1
+RewriteRule ^add/(.*?)/(\d+) /add/$1.php?id=$2
+RewriteRule ^delete/(.*?)/(\d+) delete/$1.php?id=$2
+RewriteRule ^edit/(.*?)/(\d+) /edit/$1.php?id=$2 [QSA]
+RewriteRule ^print/(.*?)/(\d+) /print/$1.php?id=$2
+RewriteRule ^templates\/ /404.php
+RewriteRule ^htaccess /404.php
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule (.+)$ $1.php [L]
+
+#RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+#RewriteRule .* . [F,L]
+
+FileETag none
