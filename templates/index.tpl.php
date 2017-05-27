@@ -15,7 +15,7 @@
 <div class="unit half" style="overflow:hidden;">
 <strong>Add Suggestion</strong>
 <div align="right">
- <a href="/<?php echo $T['webroot'];?>add/lunch-location">Add Location</a>
+ <a href="<?php echo $T['webroot'];?>/add/lunch-location">Add Location</a>
 </div>
 <form action="" method="post">
 <table width="100%">
@@ -66,7 +66,7 @@
 <?php foreach($T['lunch_suggestions'] as $i){ ?>
  <?php $this_md5 = htmlspecialchars_decode($i['lunch_suggestion_location'],ENT_QUOTES);?>
  <?php #$this_md5 = md5($this_md5);?>
- <?php echo $i['lunch_suggestion_name'];?> => <?php echo $i['lunch_suggestion_location'];?>:<?php echo number_format((float)$T['lunch_suggestions_count'][$this_md5]['percentage'], 2, '.', '');?>% : <?php if($_SERVER['REMOTE_ADDR'] == $i['lunch_suggestion_ip_address']){?><a href="/lunch/delete/lunch-suggestion/<?php echo $i['lunch_suggestion_id'];?>">[delete]</a><?php }?><br/>
+ <?php echo $i['lunch_suggestion_name'];?> => <?php echo $i['lunch_suggestion_location'];?>:<?php echo number_format((float)$T['lunch_suggestions_count'][$this_md5]['percentage'], 2, '.', '');?>% : <?php if($_SERVER['REMOTE_ADDR'] == $i['lunch_suggestion_ip_address']){?><a href="<?php echo $T['webroot'];?>/delete/lunch-suggestion/<?php echo $i['lunch_suggestion_id'];?>">[delete]</a><?php }?><br/>
 <?php } ?> <br/>
 <strong>People Percentages</strong> <br/>
 <?php foreach($T['people_percentage'] as $k => $v){?>

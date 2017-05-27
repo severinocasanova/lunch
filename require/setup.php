@@ -10,6 +10,7 @@ $db_username = $GLOBALS['LUNCH_CONFIG']['General']['db_username'];
 $db_password = $GLOBALS['LUNCH_CONFIG']['General']['db_password'];
 $stop_time = $GLOBALS['LUNCH_CONFIG']['General']['stop_time'];
 $parent_url = $GLOBALS['LUNCH_CONFIG']['General']['parent_url'];
+$voters = explode(',', $GLOBALS['LUNCH_CONFIG']['General']['voters']);
 
 try {
   $dbh = new PDO("mysql:host=$db_hostname;dbname=$db_database", $db_username, $db_password);

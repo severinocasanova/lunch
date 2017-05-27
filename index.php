@@ -9,19 +9,9 @@ $lunch_locations_obj = new lunch_locations(array('dbh' => $dbh));
 $lunch_suggestions_obj = new lunch_suggestions(array('dbh' => $dbh));
 $lunch_winners_obj = new lunch_winners(array('dbh' => $dbh));
 
+// values from config.ini
 $T['stop_time'] = $stop_time;
-$T['people'] = array('Brian',
-                     'Chris',
-                     'Griffith',
-                     'Kurt',
-                     'Luis',
-                     'Lydia',
-                     'Rene',
-                     'Scott',
-                     'Severino',
-                     'Westin',
-                     'Yihong',
-                     'Zach');
+$T['people'] = $voters;
 
 # add suggestion
 if(isset($_POST['lunch_suggestion_location']) && in_array($_POST['lunch_suggestion_name'],$T['people'])){

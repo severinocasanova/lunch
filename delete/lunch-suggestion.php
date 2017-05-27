@@ -1,5 +1,5 @@
 <?php
-$T['webroot'] = 'lunch/';
+$T['webroot'] = '/lunch';
 require_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/require/setup.php');
 include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/classes/lunch_suggestions.class.php');
 
