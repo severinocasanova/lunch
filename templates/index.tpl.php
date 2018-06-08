@@ -10,7 +10,7 @@
  <div class="center message"><?php echo $m;?></div>
 <?php } ?>
 
-<span>Please make TWO suggestions. They can both be the same if you really want to go there. <br/><br/></span>
+<span>Please make <strong>TWO</strong> suggestions. They can both be the same if you really want to go there. <br/><br/></span>
 
 <div class="unit half" style="overflow:hidden;">
 <strong>Add Suggestion</strong>
@@ -79,7 +79,7 @@
 <div class="unit">
 <strong>Potential Winner</strong> <br/>
 
-Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops at 11:30AM on Saturday (<?php echo $T['stop_time'];?>)</u>. Good Luck! <br/><br/>
+Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops (<?php echo $T['stop_time'];?>)</u>. Good Luck! <br/><br/>
 <div style="text-align:center;">
 <h2 style="font-size:2em;">Winner Generator</h2>
 Server Time: <?php echo $T['current_time'];?> <br/>
