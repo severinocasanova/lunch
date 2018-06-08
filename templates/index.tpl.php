@@ -79,7 +79,7 @@
 <div class="unit">
 <strong>Potential Winner</strong> <br/>
 
-Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops at 11:30AM on Friday (<?php echo $T['stop_time'];?>)</u>. Good Luck! <br/><br/>
+Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops at 11:30AM on Saturday (<?php echo $T['stop_time'];?>)</u>. Good Luck! <br/><br/>
 <div style="text-align:center;">
 <h2 style="font-size:2em;">Winner Generator</h2>
 Server Time: <?php echo $T['current_time'];?> <br/>

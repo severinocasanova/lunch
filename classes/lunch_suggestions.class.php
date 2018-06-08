@@ -103,5 +103,15 @@ class lunch_suggestions extends common {
     }
   }
 
+  # hash, id, user_id
+  function update_lunch_suggestions($args){
+    $hash = $args['hash'];
+    $sql = "UPDATE $this->table SET lunch_suggestion_display = '0'";
+    $sth = $this->dbh->prepare($sql);
+    $sth->execute();
+    return 1;
+  }
+
+
 }
 ?>
