@@ -81,3 +81,4 @@ $T['title'] = 'Over-Engineered Unbiased Lunch Selector';
 $T['messages'] = $lunch_suggestions_obj->messages;
 $T['lunch_suggestions_count'] = $lunch_suggestions_count;
 include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/index.tpl.php');
+?>

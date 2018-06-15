@@ -3,6 +3,7 @@
 <div class="unit">
 <h1>Over-Engineered Unbiased Lunch Selector</h1>
 <div align="right">
+  <a href="<?php echo $T['webroot'];?>/pick-random-location">Pick Random Location</a> |
   <a href="">Refresh</a>
 </div>
 
@@ -79,7 +80,7 @@
 <div class="unit">
 <strong>Potential Winner</strong> <br/>
 
-Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops (<?php echo $T['stop_time'];?>)</u>. Good Luck! <br/><br/>
+Below, you will see the Winner Generator. This tool will randomly select a name out of the hat every minute. <u>The final winner will be decided when the randomizer stops (<?php echo date('l, F j, Y H:ia',strtotime($T['stop_time']));?>)</u>. Good Luck! <br/><br/>
 <div style="text-align:center;">
 <h2 style="font-size:2em;">Winner Generator</h2>
 Server Time: <?php echo $T['current_time'];?> <br/>
