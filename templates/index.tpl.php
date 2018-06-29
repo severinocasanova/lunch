@@ -1,7 +1,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/templates/header.tpl.php'); ?>
 
 <div class="unit">
-<h1>Over-Engineered Unbiased Lunch Selector</h1>
+<h1><a href="<?php echo $T['webroot']?>/admin" style="text-decoration:none;">Over-Engineered Unbiased Lunch Selector</a></h1>
 <div align="right">
   <a href="<?php echo $T['webroot'];?>/pick-random-location">Pick Random Location</a> |
   <a href="">Refresh</a>
@@ -98,7 +98,7 @@ Tip: Hitting F5 on your browser will refresh the page so you can see the Winner 
 <div class="unit">
 <strong>Lunch Winners</strong> <br/>
 <?php foreach($T['lunch_winners'] as $i){ ?>
- <?php echo $i['lunch_winner_created'];?> => <?php echo $i['lunch_winner_location'];?> <br/>
+ <a href="<?php echo $T['webroot'];?>/edit/lunch-winner/<?php echo $i['lunch_winner_id'];?>"><?php echo date('Y-m-d', strtotime($i['lunch_winner_created']));?> => <?php echo $i['lunch_winner_location'];?></a> <br/>
 <?php } ?>
 </div>
 

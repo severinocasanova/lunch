@@ -31,3 +31,4 @@ config.ini
 files/potential-winner.txt
 templates/blocks/header.tpl.php
 templates/blocks/footer.tpl.php
+

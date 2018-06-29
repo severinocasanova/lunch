@@ -21,6 +21,19 @@ class lunch_winners extends common {
     }
   }
 
+  # id
+  function get_lunch_winner($args){
+    $sql = "
+      SELECT *
+      FROM lunch_winners
+      WHERE lunch_winner_id = :id
+      LIMIT 1";
+    $sth = $this->dbh->prepare($sql);
+    $sth->execute(array(':id' => $args['id']));
+    $r = $sth->fetch(PDO::FETCH_ASSOC);
+    return $r;
+  }
+
   # hash, user_id
   function get_lunch_winners($args){
     $fields = "CONCAT_WS(' ',lunch_winner_location)";
@@ -57,6 +70,29 @@ class lunch_winners extends common {
           $this->messages[] = "You have successfully added a lunch_winner!";
           return $id;
         }
+    }
+  }
+
+  # hash, id, user_id
+  function update_lunch_winner($args){
+    $hash = $args['hash'];
+    $item = $this->get_lunch_winner(array('id' => $args['id']));
+    $where = 'lunch_winner_id = :id';
+    $update = NULL;
+    foreach($hash as $k => $v){
+      if($hash[$k] != $item[$k] && array_key_exists($k, $item)){
+        $binds[':'.$k] = $v;
+        $update .= (is_null($v) ? "$k = NULL, " : "$k = :$k, ");
+        $this->messages[] = "You have successfully updated the $k!";
+      }
+    }
+    $update = rtrim($update, ', ');
+    $sql = "UPDATE $this->table SET $update WHERE $where";
+    if($update){
+      $binds[':id'] = $args['id'];
+      $sth = $this->dbh->prepare($sql);
+      $sth->execute($binds);
+      return 1;
     }
   }
 
