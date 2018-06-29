@@ -13,7 +13,7 @@ $id = (preg_match("/\/edit\/[\w-]+\/(\d+)/",$_SERVER['REQUEST_URI'],$matches) ? 
 # add suggestion
 if(isset($_POST['lunch_winner_location'])){
   $hash = $_POST;
-  if($id = $lunch_winners_obj->update_lunch_winner(array('hash' => $hash))){
+  if($id = $lunch_winners_obj->update_lunch_winner(array('id' => $id, 'hash' => $hash))){
     header("Location: /lunch/");
   }
 }
