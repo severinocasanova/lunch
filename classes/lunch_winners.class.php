@@ -50,7 +50,7 @@ class lunch_winners extends common {
   # hash, location, user_id
   function insert_lunch_winner($args){
     $hash = $args['hash'];
-    if(!$hash['lunch_winner_winner']){
+    if(!$hash['lunch_winner_location']){
       $this->messages[] = "You did not enter in a lunch winner!";
     }else{
         if($id = $this->insert_row(array('table' => $this->table, 'hash' => $hash, 'columns' => $this->lunch_winners_columns))){

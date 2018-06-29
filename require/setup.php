@@ -2,8 +2,8 @@
 $T['webroot'] = '/lunch';
 include_once($_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/classes/common.class.php');
 
-$GLOBALS['PROJECTS']['LUNCH_ROOT'] = __DIR__ . '/../';
-$GLOBALS['LUNCH_CONFIG'] = parse_ini_file($GLOBALS['PROJECTS']['LUNCH_ROOT'] . '/config.ini', true);
+$config_file = $_SERVER['DOCUMENT_ROOT'].$T['webroot'].'/config.ini';
+$GLOBALS['LUNCH_CONFIG'] = parse_ini_file($config_file, true);
 $db_hostname = $GLOBALS['LUNCH_CONFIG']['General']['db_hostname'];
 $db_database = $GLOBALS['LUNCH_CONFIG']['General']['db_database'];
 $db_username = $GLOBALS['LUNCH_CONFIG']['General']['db_username'];
@@ -28,3 +28,4 @@ $T['meta_keywords'] = '';
 foreach (array('a','c','d','q','s','t') as $i){
   $T[$i] = (!empty($_GET[$i]) ? preg_replace('/"/',"&quot;", $_GET[$i]) : '');
 }
+?>

@@ -6,8 +6,10 @@ $document_root = $GLOBALS['LUNCH_CONFIG']['General']['document_root'];
 $_SERVER['DOCUMENT_ROOT'] = $document_root;
 require_once($_SERVER['DOCUMENT_ROOT'].'/lunch/require/setup.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/lunch/classes/lunch_suggestions.class.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/lunch/classes/lunch_winners.class.php');
 
 $lunch_suggestions_obj = new lunch_suggestions(array('dbh' => $dbh));
+$lunch_winners_obj = new lunch_winners(array('dbh' => $dbh));
 
 $T['stop_time'] = $stop_time;
 
@@ -126,4 +128,11 @@ if($potential_winner){
 // make sure not to write to the winner file after the stop_time
 if(date("Y-m-d H:i:s", time() - 5) < $T['stop_time']){
   file_put_contents($_SERVER['DOCUMENT_ROOT'].'/lunch/files/potential-winner.txt', $T['potential_winner']);
+}
+
+// if same minute, update the winners database
+if(date("Y-m-d H:i", time()) == date("Y-m-d H:i",strtotime($T['stop_time']))){
+  $hash = array();
+  $hash['lunch_winner_location'] = $T['potential_winner'];
+  $lunch_winners_obj->insert_lunch_winner(array('hash' => $hash));
 }

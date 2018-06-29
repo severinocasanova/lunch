@@ -24,6 +24,11 @@ RewriteRule ^htaccess /404.php
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule (.+)$ $1.php [L]
 
+<Files ~ "\.ini$">
+  Order allow,deny
+  Deny from all
+</Files>
+
 #RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
 #RewriteRule .* . [F,L]
 
