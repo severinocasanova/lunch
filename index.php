@@ -33,20 +33,28 @@ if(isset($_POST['lunch_suggestion_location']) && in_array($_POST['lunch_suggesti
 
 $T['lunch_locations'] = $lunch_locations_obj->get_lunch_locations(array('hash' => array()));
 $T['lunch_suggestions'] = $lunch_suggestions_obj->get_lunch_suggestions(array('hash' => array()));
+$lunch_suggestions = $T['lunch_suggestions'];
+
+// remove users who can't go
+foreach($T['lunch_suggestions'] as $k => $v){
+  if($v['lunch_suggestion_location'] == "Can't Go"){
+    unset($lunch_suggestions[$k]);
+  }
+}
 
 $people_suggesting = array();
 $lunch_suggestions_count = array();
 
 // loop through suggestions to get count and percentage of each suggestion
 // Also create an array of voters and what they voted for
-foreach($T['lunch_suggestions'] as $i){
+foreach($lunch_suggestions as $i){
   if(isset($lunch_suggestions_count[$i['lunch_suggestion_location']])){
     $lunch_suggestions_count[$i['lunch_suggestion_location']]['count']++;
   }else{
     $lunch_suggestions_count[$i['lunch_suggestion_location']] = array();
     $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] = 1;
   }
-  $lunch_suggestions_count[$i['lunch_suggestion_location']]['percentage'] = $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] / count($T['lunch_suggestions']) * 100;
+  $lunch_suggestions_count[$i['lunch_suggestion_location']]['percentage'] = $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] / count($lunch_suggestions) * 100;
   if(!isset($people_suggesting[$i['lunch_suggestion_name']][$i['lunch_suggestion_location']])){
     $people_suggesting[$i['lunch_suggestion_name']][$i['lunch_suggestion_location']] = 0;
   }
@@ -55,7 +63,7 @@ foreach($T['lunch_suggestions'] as $i){
 
 // find a people percentage
 $people_percentage = array();
-foreach($T['lunch_suggestions'] as $i){
+foreach($lunch_suggestions as $i){
   $this_suggested = 0;
   foreach($people_suggesting as $k => $v){
     if(isset($people_suggesting[$k][$i['lunch_suggestion_location']])){

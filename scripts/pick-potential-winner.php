@@ -15,6 +15,14 @@ $T['stop_time'] = $stop_time;
 
 // what did people vote for? returns an array of associated arrays
 $T['lunch_suggestions'] = $lunch_suggestions_obj->get_lunch_suggestions(array('hash' => array()));
+$lunch_suggestions = $T['lunch_suggestions'];
+
+// remove users who can't go
+foreach($T['lunch_suggestions'] as $k => $v){
+  if($v['lunch_suggestion_location'] == "Can't Go"){
+    unset($lunch_suggestions[$k]);
+  }
+}
 /*
 Array
 (
@@ -31,8 +39,8 @@ Array
 */
 
 // select a random vote entry
-$random_index = array_rand($T['lunch_suggestions']);
-$T['potential_winner'] = $T['lunch_suggestions'][$random_index]['lunch_suggestion_location'].' - '.$T['lunch_suggestions'][$random_index]['lunch_suggestion_name'];
+$random_index = array_rand($lunch_suggestions);
+$T['potential_winner'] = $lunch_suggestions[$random_index]['lunch_suggestion_location'].' - '.$lunch_suggestions[$random_index]['lunch_suggestion_name'];
 
 $potential_winner = '';
 $people_suggesting = array();
@@ -40,14 +48,14 @@ $lunch_suggestions_count = array();
 
 // loop through suggestions to get count and percentage of each suggestion
 // Also create an array of voters and what they voted for
-foreach($T['lunch_suggestions'] as $i){
+foreach($lunch_suggestions as $i){
   if(isset($lunch_suggestions_count[$i['lunch_suggestion_location']])){
     $lunch_suggestions_count[$i['lunch_suggestion_location']]['count']++;
   }else{
     $lunch_suggestions_count[$i['lunch_suggestion_location']] = array();
     $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] = 1;
   }
-  $lunch_suggestions_count[$i['lunch_suggestion_location']]['percentage'] = $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] / count($T['lunch_suggestions']) * 100;
+  $lunch_suggestions_count[$i['lunch_suggestion_location']]['percentage'] = $lunch_suggestions_count[$i['lunch_suggestion_location']]['count'] / count($lunch_suggestions) * 100;
   if(!isset($people_suggesting[$i['lunch_suggestion_name']][$i['lunch_suggestion_location']])){
     $people_suggesting[$i['lunch_suggestion_name']][$i['lunch_suggestion_location']] = 0;
   }
@@ -56,7 +64,7 @@ foreach($T['lunch_suggestions'] as $i){
 
 // find a people percentage
 $people_percentage = array();
-foreach($T['lunch_suggestions'] as $i){
+foreach($lunch_suggestions as $i){
   $this_suggested = 0;
   foreach($people_suggesting as $k => $v){
     if(isset($people_suggesting[$k][$i['lunch_suggestion_location']])){
@@ -136,3 +144,4 @@ if(date("Y-m-d H:i", time()) == date("Y-m-d H:i",strtotime($T['stop_time']))){
   $hash['lunch_winner_location'] = $T['potential_winner'];
   $lunch_winners_obj->insert_lunch_winner(array('hash' => $hash));
 }
+?>

@@ -36,6 +36,7 @@
   <td>
 <select name="lunch_suggestion_location">
  <option value="">--Select Location--</option>
+ <option value="Can't Go">Can't Go</option>
 <?php foreach($T['lunch_locations'] as $i){ ?>
  <option value="<?php echo $i['lunch_location_name'];?>"><?php echo $i['lunch_location_name'];?></option>
 <?php } ?>
@@ -67,7 +68,7 @@
 <?php foreach($T['lunch_suggestions'] as $i){ ?>
  <?php $this_md5 = htmlspecialchars_decode($i['lunch_suggestion_location'],ENT_QUOTES);?>
  <?php #$this_md5 = md5($this_md5);?>
- <?php echo $i['lunch_suggestion_name'];?> => <?php echo $i['lunch_suggestion_location'];?>:<?php echo number_format((float)$T['lunch_suggestions_count'][$this_md5]['percentage'], 2, '.', '');?>% : <?php if($_SERVER['REMOTE_ADDR'] == $i['lunch_suggestion_ip_address']){?><a href="<?php echo $T['webroot'];?>/delete/lunch-suggestion/<?php echo $i['lunch_suggestion_id'];?>">[delete]</a><?php }?><br/>
+ <?php echo $i['lunch_suggestion_name'];?> => <?php echo $i['lunch_suggestion_location'];?><?php if($T['lunch_suggestions_count'][$this_md5]['percentage']){ ?>:<?php echo number_format((float)$T['lunch_suggestions_count'][$this_md5]['percentage'], 2, '.', '');?>% <?php } ?>: <?php if($_SERVER['REMOTE_ADDR'] == $i['lunch_suggestion_ip_address']){?><a href="<?php echo $T['webroot'];?>/delete/lunch-suggestion/<?php echo $i['lunch_suggestion_id'];?>">[delete]</a><?php }?><br/>
 <?php } ?> <br/>
 <strong>People Percentages</strong> <br/>
 <?php foreach($T['people_percentage'] as $k => $v){?>
